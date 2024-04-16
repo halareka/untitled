@@ -1,0 +1,165 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+  <head> 
+    <meta charset="UTF-8" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <title>Document</title> 
+    <link rel="stylesheet" href="./css/style.css">
+  </head> 
+  <body> 
+  <div class="wrapper">
+    <header>
+      <div class="header">
+        <button onclick="startDraw()"  class="header_btn">start</button>
+        <button onclick="stopDraw()"   class="header_btn">stop </button>
+        <button onclick="clearTable()" class="header_btn">clear</button>
+        <button id="btn"class="header_btn">user_settings</button>
+      </div>
+    </header>
+  
+    <main>
+      <div class="table">
+        <canvas class="table_draw" id="canvas" style="display: block;"></canvas>
+      </div>
+    </main>
+
+    <aside id="aside_menu" class="dropdown">
+      <div class="menu_text">
+          <h3 style="margin:0;cursor: pointer;;padding-top:5px; font-size: 25px;" onclick="document.querySelector('.dropdown').classList.toggle('show');">Menu</h3>
+      </div>
+      <hr>
+      <div class="wrapper_menu">
+          <div class="section">
+              <h4 class="section_text">general</h4>
+              <div class="block_menu" style="gap: 15px;">
+                <h4 class="text">тема:</h5>
+                <button class="btn_block" onclick="dark()">темная</button>
+                <button class="btn_block" onclick="light()">светлая</button>
+              </div>
+              <div class="block_menu" style="display: block;margin-top: 10px;">
+                <h4 class="text">время итерации(мc):</h5>
+                <input min="4" max="500" type="number" value="50" class="input_block" id="input_iteration_time">
+              </div>
+          </div>
+          <div class="section">
+              <h4 class="section_text">canvas</h4>
+              <div class="block_menu" style="align-items: center;">
+                <h4 class="text">цвет линии:</h5>
+                <input type="color" class="input_block" style="margin:0;background-color: transparent;" id="input_line_color">
+              </div>
+              <div class="block_menu" style="align-items: center;">
+                <h4 class="text">цвет холста:</h5>
+                <input type="color" value="#FFFFFF" class="input_block" style="margin:0;background-color: transparent;" id="input_holst_color">
+              </div>
+              <div class="block_menu" style="align-items: baseline;">
+                <h4 class="text">толщина линии:</h5>
+                <input min="1" max="50" type="number" value="1" class="input_block" style="margin: 5px 5px 5px 5px;" id="input_line_wight">
+              </div>
+          </div>
+          <div class="section">              
+            <h4 class="section_text">random_length_path</h4>
+            <div class="block_menu" style="align-items: center;">
+                <h4 class="text">от</h5>
+                <input min="1" max="500" type="number" value="1" class="input_block" style="margin: 5px 5px 5px 5px;"  id="input_min_path">
+                <h4 class="text" style="padding-left: 0px;">до</h5>
+                <input min="1" max="500" type="number" value="100" class="input_block" style="margin: 5px 5px 5px 5px;" id="input_max_path">
+            </div>
+          </div>
+          <div class="section">              
+            <h4 class="section_text">random_length_piece</h4>
+            <div class="block_menu" style="align-items: center;">
+                <h4 class="text">право от</h5>
+                <input min="2" max="500" type="number" value="2" class="input_block" style="margin: 5px 5px 5px 5px;width: 40px;"  id="min_length_right">
+                <h4 class="text" style="padding-left: 0px;">до</h5>
+                <input min="20" max="500" type="number" value="20" class="input_block" style="margin: 5px 5px 5px 5px;width: 40px;"id="max_length_right">
+            </div>
+            <div class="block_menu" style="align-items: center;">
+              <h4 class="text">вниз⠀от</h5>
+              <input min="2" max="500" type="number" value="2" class="input_block" style="margin: 5px 5px 5px 5px;width: 40px;"   id="min_length_down">
+              <h4 class="text" style="padding-left: 0px;">до</h5>
+              <input min="20" max="500" type="number" value="20" class="input_block" style="margin: 5px 5px 5px 5px;width: 40px;" id="max_length_down">
+            </div>
+            <div class="block_menu" style="align-items: center;">
+              <h4 class="text">влево от</h5>
+              <input min="2" max="500" type="number" value="2" class="input_block" style="margin: 5px 5px 5px 5px;width: 40px;"  id="min_length_left">
+              <h4 class="text" style="padding-left: 0px;">до</h5>
+              <input min="20" max="500" type="number" value="20" class="input_block" style="margin: 5px 5px 5px 5px;width: 40px;" id="max_length_left">
+            </div>
+            <div class="block_menu" style="align-items: center;">
+              <h4 class="text">вверх от</h5>
+              <input min="2" max="500" type="number" value="2" class="input_block" style="margin: 5px 5px 5px 5px;width: 40px;" id="min_length_up">
+              <h4 class="text" style="padding-left: 0px;">до</h5>
+              <input min="20" max="500" type="number" value="20" class="input_block" style="margin: 5px 5px 5px 5px;width: 40px;"id="max_length_up">
+            </div>
+          </div>
+          <div class="section">              
+            <h4 class="section_text">chance_of_way</h4>
+            <div class="block_menu" style="align-items: center;">
+                <h4 class="text">право</h5>
+                <input min="0" max="100" type="number" value="25" class="input_block" style="margin: 5px 5px 5px 4px;" id="chance1">
+            </div>
+            <div class="block_menu" style="align-items: center;">
+                <h4 class="text">вниз⠀</h5>
+                <input min="0" max="100" type="number" value="25" class="input_block" style="margin: 5px 5px 5px 3px;" id="chance2">
+
+            </div>
+            <div class="block_menu" style="align-items: center;">
+                <h4 class="text">влево</h5>
+                <input min="0" max="100" type="number" value="25" class="input_block" style="margin: 5px 5px 5px 5px;" id="chance3">
+
+            </div>
+            <div class="block_menu" style="align-items: center;">
+                <h4 class="text">вверх</h5>
+                <input min="0" max="100" type="number" value="25" class="input_block" style="margin: 5px 5px 5px 6px;" id="chance4">
+            </div>
+          </div>
+          <div class="section" style="text-align: center;background-color: transparent;">
+            <button class="btn_block_sub" onclick="submit()">SUBMIT</button>
+
+        </div>
+      </div>
+      
+  </aside>
+
+  </div>
+  <script src="./js/script.js"></script>
+  <script>
+      const btn = document.getElementById('btn');
+      const dropdown = document.querySelector('.dropdown');
+
+      btn.addEventListener('click', () => {
+          dropdown.classList.toggle('show');
+      });
+  </script>
+  <script>
+      let a = document.documentElement;
+      function light() {
+        ctx.fillStyle = "white";
+        ctx.fillRect(canvas.width * -1, canvas.height * -1, canvas.width * 2, canvas.height * 2)
+          a.style.setProperty('--header', 'rgb(251, 237, 255)');
+          a.style.setProperty('--aside', '#fff5fd');
+          a.style.setProperty('--hr', 'black');
+          a.style.setProperty('--section', 'rgb(237, 217, 248)');
+          a.style.setProperty('--text', '#4b4b4b');
+          a.style.setProperty('--col_head', 'white');
+          a.style.setProperty('--sub', 'rgb(187, 168, 255)');
+      }
+      function dark() {
+        ctx.fillStyle = "gray";
+        ctx.fillRect(canvas.width * -1, canvas.height * -1, canvas.width * 2, canvas.height * 2)
+          a.style.setProperty('--header', 'rgb(80, 80, 80)');
+          a.style.setProperty('--aside', 'rgb(66, 66, 66)');
+          a.style.setProperty('--hr', 'rgb(255, 255, 255)');
+          a.style.setProperty('--section', '#616161');
+          a.style.setProperty('--text', 'rgb(224, 224, 224)');
+          a.style.setProperty('--col_head', 'black');
+          a.style.setProperty('--sub', 'rgb(151, 151, 151)');
+      }
+      window.onload = () =>{
+        ctx.fillStyle = "gray";
+        ctx.fillRect(canvas.width * -1, canvas.height * -1, canvas.width * 2, canvas.height * 2)
+      }
+  </script>
+       
+  </body> 
+</html>
