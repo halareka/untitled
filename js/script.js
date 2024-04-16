@@ -27,6 +27,7 @@ ctx.lineWidth = 1;
 
 //----------------------------------------------------------------------------//
 let flagInterval = null;
+let oldColor = '#FFFFFF';
 let counter = 1;
 let x = 1 ,y = 1;        
 
@@ -156,8 +157,11 @@ function submit(){
     TIME = document.getElementById("input_iteration_time").value;
     //
     ctx.strokeStyle = document.getElementById("input_line_color").value;
-    ctx.fillStyle = document.getElementById("input_holst_color").value;
-    ctx.fillRect(canvas.width * -1, canvas.height * -1, canvas.width * 2, canvas.height * 2)
+    if(oldColor != document.getElementById("input_holst_color").value){
+        old = document.getElementById("input_holst_color").value;
+        ctx.fillStyle = document.getElementById("input_holst_color").value;
+        ctx.fillRect(canvas.width * -1, canvas.height * -1, canvas.width * 2, canvas.height * 2)
+    }
     ctx.lineWidth = document.getElementById("input_line_wight").value;
     //
     MIN_PATH = document.getElementById("input_min_path").value;
