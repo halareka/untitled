@@ -13,6 +13,7 @@
         <button onclick="startDraw()"  class="header_btn">start</button>
         <button onclick="stopDraw()"   class="header_btn">stop </button>
         <button onclick="clearTable()" class="header_btn">clear</button>
+        <button onclick="save()" class="header_btn">save</button>
         <button id="btn"class="header_btn">user_settings</button>
       </div>
     </header>
@@ -133,7 +134,7 @@
           dropdown.classList.toggle('show');
       });
       subButton.addEventListener('click', () => {
-          dropdown.classList.toggle('show');
+        subButton.classList.toggle('show');
       });
   </script>
   <script>
@@ -165,6 +166,6 @@
         ctx.fillRect(canvas.width * -1, canvas.height * -1, canvas.width * 2, canvas.height * 2)
       }
   </script>
-       
+  <script src="./js/save.js"></script>
   </body> 
 </html>
