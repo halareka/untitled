@@ -171,6 +171,9 @@ function clearTable() {
 ctx.stroke();
 
 function submit() {
+  const menu = document.querySelector(".dropdown");
+  menu.classList.toggle("show");
+
   //
   TIME = document.getElementById("input_iteration_time").value;
   //
