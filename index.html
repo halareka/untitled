@@ -25,7 +25,8 @@
 
     <aside id="aside_menu" class="dropdown">
       <div class="menu_text">
-          <h3 style="margin:0;cursor: pointer;;padding-top:5px; font-size: 25px;" onclick="document.querySelector('.dropdown').classList.toggle('show');">Menu</h3>
+          <h3 style="margin:0;cursor: pointer;;padding-top:5px; font-size: 25px;" onclick="document.querySelector('.dropdown').classList.toggle('show');">Menu
+          <img src="./img/signs-close-icon-png.webp" height="32px" alt="close icon"></h3>
       </div>
       <hr>
       <div class="wrapper_menu">
@@ -126,8 +127,12 @@
   <script>
       const btn = document.getElementById('btn');
       const dropdown = document.querySelector('.dropdown');
+      const subButton = document.querySelector('.btn_block_sub');
 
       btn.addEventListener('click', () => {
+          dropdown.classList.toggle('show');
+      });
+      subButton.addEventListener('click', () => {
           dropdown.classList.toggle('show');
       });
   </script>
