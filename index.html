@@ -13,6 +13,7 @@
         <button onclick="startDraw()"  class="header_btn">start</button>
         <button onclick="stopDraw()"   class="header_btn">stop </button>
         <button onclick="clearTable()" class="header_btn">clear</button>
+        <button onclick="save()" class="header_btn">save</button>
         <button id="btn"class="header_btn">user_settings</button>
       </div>
     </header>
@@ -25,7 +26,8 @@
 
     <aside id="aside_menu" class="dropdown">
       <div class="menu_text">
-          <h3 style="margin:0;cursor: pointer;;padding-top:5px; font-size: 25px;" onclick="document.querySelector('.dropdown').classList.toggle('show');">Menu</h3>
+          <h3 style="margin:0;cursor: pointer;;padding-top:5px; font-size: 25px;" onclick="document.querySelector('.dropdown').classList.toggle('show');">Menu
+          <img src="./img/signs-close-icon-png.webp" height="32px" alt="close icon"></h3>
       </div>
       <hr>
       <div class="wrapper_menu">
@@ -130,6 +132,7 @@
       btn.addEventListener('click', () => {
           dropdown.classList.toggle('show');
       });
+
   </script>
   <script>
       let a = document.documentElement;
@@ -160,6 +163,6 @@
         ctx.fillRect(canvas.width * -1, canvas.height * -1, canvas.width * 2, canvas.height * 2)
       }
   </script>
-       
+  <script src="./js/save.js"></script>
   </body> 
 </html>
