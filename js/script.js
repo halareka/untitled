@@ -62,7 +62,7 @@ function right() {
 function down() {
   counter++;
   if (counter % 2 != 0) {
-    y += randomNum(min_d, 20);
+    y += randomNum(min_d, max_d);
   }
   if (counter % 2 === 0) {
     if (counter % 4 === 0) {
